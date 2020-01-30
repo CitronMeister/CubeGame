@@ -2,9 +2,9 @@ import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 String val;     // Data received from the serial port
 
-
+levels level = new levels();
 Players player1 = new Players(50, 50, 1);
-Players player2 = new Players(200, 50, 2);
+Players player2 = new Players(100, 50, 2);
 boolean keys[] = new boolean [8];
 
 
@@ -21,6 +21,7 @@ void setup() {
 
 void draw() {
   background(71);
+  level.level_1();
   player1.update();
   player2.update();
   

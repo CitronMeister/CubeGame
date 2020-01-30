@@ -1,23 +1,28 @@
 class Players {
-float xpos, ypos;
+int xpos, ypos;
 int type;
 int playerSize = 30;
 
   
   
 
-  Players(float x, float y, int playerType){
+  Players(int x, int y, int playerType){
     xpos = x;
     ypos = y;
     type = playerType;
   }
   
   void update(){
+    collision();
     display();
     movement();
   }
 
-
+  void collision(){
+    int checkColor = get(xpos, ypos);
+    
+    print(checkColor);
+  }
 
   void display(){
     if(type == 1){
