@@ -13,7 +13,7 @@ int playerSize = 30;
   }
   
   void update(){
-    collision();
+    //collision();
     display();
     movement();
   }
@@ -42,16 +42,16 @@ int playerSize = 30;
   
   void movement(){
     //movement workaround since processing has a hard time allowing multiple inputs
-    if(keys[0] && type == 1){
+    if(keys[0] || a0 >= 100 && type == 1 && ypos > 15){
       ypos = ypos - 5;
     }
-    if(keys[1] && type == 1){
+    if(keys[1] || a1 >= 175 && type == 1 && ypos <= 780){
       ypos = ypos + 5;
     }
-    if(keys[2] && type == 1){
+    if(keys[2] || a2 >= 290 && type == 1 && xpos >= 20){
       xpos = xpos - 5;
     }
-    if(keys[3] && type == 1){
+    if(keys[3] || a3 >= 215 && type == 1 && xpos <= 780){
       xpos = xpos + 5;
     }
     if(keys[4] && type == 2){

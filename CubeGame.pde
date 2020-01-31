@@ -6,7 +6,7 @@ levels level = new levels();
 Players player1 = new Players(50, 50, 1);
 Players player2 = new Players(100, 50, 2);
 boolean keys[] = new boolean [8];
-
+int a0,a1,a2,a3;
 
 void setup() {
   // arduino recieve
@@ -25,13 +25,28 @@ void draw() {
   player1.update();
   player2.update();
   
+  
+  
 
   if ( myPort.available() > 0) {  // If data is available,
     val = myPort.readStringUntil('\n');         // read it and store it in val
     } 
-  println(val); //print it out in the console
- 
-  
+ // println(val); //print it out in the console
+  if(val!=null){
+    String[] values = val.trim().split(",");
+    if(values.length == 4) {
+      a0=Integer.parseInt(values[0]);
+      a1=Integer.parseInt(values[1]);
+      a2=Integer.parseInt(values[2]);
+      a3=Integer.parseInt(values[3]);
+    
+      println(a0);
+      println(a1);
+      println(a2);
+      println(a3);
+      println();
+    }
+  }
 }
 
  

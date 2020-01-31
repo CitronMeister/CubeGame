@@ -1,7 +1,8 @@
 class levels {
 
   void level_1(){
-    block(200, 200);
+    block(175, 25);
+    block(175, 75);
   }
   
   
