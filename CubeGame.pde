@@ -2,11 +2,13 @@ import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 String val;     // Data received from the serial port
 
+int levelcount = 1;   // check what level the players are at
+
 levels level = new levels();
 Players player1 = new Players(50, 50, 1);
 Players player2 = new Players(100, 50, 2);
-boolean keys[] = new boolean [8];
-int a0,a1,a2,a3;
+boolean keys[] = new boolean [8]; // array for the keys
+int a0,a1,a2,a3; // vars for each arduino sensor readings
 
 void setup() {
   // arduino recieve
@@ -14,16 +16,25 @@ void setup() {
   String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
   
-  
+  // window size
   size(800, 800);
   rectMode(CENTER);
 }
 
 void draw() {
   background(71);
-  level.level_1();
-  player1.update();
-  player2.update();
+  // level picker
+  if (levelcount == 1){
+    level.level_1();
+    player1.update();
+    player2.update();
+  } else if(levelcount == 2){
+    player1.update();
+    player2.update();
+  }
+  
+  
+  
   
   
   
@@ -31,8 +42,9 @@ void draw() {
   if ( myPort.available() > 0) {  // If data is available,
     val = myPort.readStringUntil('\n');         // read it and store it in val
     } 
- // println(val); //print it out in the console
+ //Check if processing is recieving data from arduino
   if(val!=null){
+    // split data from each sensor into their own position in array
     String[] values = val.trim().split(",");
     if(values.length == 4) {
       a0=Integer.parseInt(values[0]);
